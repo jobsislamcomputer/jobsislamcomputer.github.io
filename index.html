@@ -1,0 +1,486 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Islam Computers | Burewala</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        /* --- CSS VARIABLES --- */
+        :root {
+            --primary-color: #008000; /* Islamic Green */
+            --dark-green: #004d00;
+            --accent-color: #ffcc00; /* Gold */
+            --text-dark: #222;
+            --light-bg: #f9f9f9;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            color: var(--text-dark);
+            background-color: #fff;
+            overflow-x: hidden;
+        }
+
+        a { text-decoration: none; }
+
+        /* --- ANIMATIONS --- */
+        
+        /* Floating Animation for Text/Logos */
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+            100% { transform: translateY(0px); }
+        }
+
+        .floating-effect {
+            animation: float 3s ease-in-out infinite;
+        }
+
+        /* Scroll Reveal Class (Hidden by default) */
+        .reveal {
+            opacity: 0;
+            transform: translateY(50px);
+            transition: all 0.8s ease-out;
+        }
+
+        /* Scroll Reveal Class (Visible) */
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Click Effect */
+        .click-effect:active {
+            transform: scale(0.95) !important;
+            transition: transform 0.1s;
+        }
+
+        /* --- HEADER --- */
+        header {
+            background-color: var(--primary-color);
+            padding: 0.5rem 5%;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo-container {
+            display: flex;
+            align-items: center;
+            color: white;
+            font-weight: bold;
+            font-size: 1.5rem;
+        }
+
+        .logo-container img {
+            height: 50px;
+            margin-right: 10px;
+            background: white;
+            border-radius: 50%;
+            padding: 2px;
+        }
+
+        .nav-links a {
+            color: white;
+            margin-left: 20px;
+            font-weight: 500;
+            transition: 0.3s;
+        }
+        .nav-links a:hover { color: var(--accent-color); }
+
+        /* --- HERO SECTION WITH SLIDER --- */
+        .hero {
+            position: relative;
+            height: 85vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            color: white;
+            overflow: hidden;
+            padding: 20px;
+        }
+
+        /* Background Slider Logic */
+        .hero-slider {
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            z-index: -1;
+        }
+        .slide {
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background-size: cover;
+            background-position: center;
+            opacity: 0;
+            animation: slideAnimation 9s infinite;
+        }
+        .slide:nth-child(1) { background-image: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('slide1.png'); animation-delay: 0s; }
+        .slide:nth-child(2) { background-image: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('slide2.png'); animation-delay: 3s; }
+        .slide:nth-child(3) { background-image: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('slide3.png'); animation-delay: 6s; }
+
+        @keyframes slideAnimation {
+            0% { opacity: 0; }
+            10% { opacity: 1; }
+            33% { opacity: 1; }
+            43% { opacity: 0; }
+            100% { opacity: 0; }
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            text-transform: uppercase;
+            text-shadow: 2px 2px 5px rgba(0,0,0,0.5);
+            margin-bottom: 10px;
+        }
+
+        .stamp-vendor {
+            background-color: var(--accent-color);
+            color: var(--text-dark);
+            padding: 10px 20px;
+            border-radius: 5px;
+            font-weight: bold;
+            font-size: 1.2rem;
+            margin-bottom: 20px;
+            border: 2px solid white;
+            box-shadow: 0 0 15px rgba(255, 204, 0, 0.5);
+        }
+
+        .hero-btns .btn {
+            padding: 15px 35px;
+            border-radius: 50px;
+            font-weight: bold;
+            font-size: 1.1rem;
+            display: inline-block;
+            margin: 10px;
+            transition: 0.3s;
+            cursor: pointer;
+            border: none;
+        }
+
+        .btn-whatsapp {
+            background-color: #25D366;
+            color: white;
+            box-shadow: 0 4px 15px rgba(37, 211, 102, 0.4);
+        }
+        .btn-whatsapp:hover { background-color: #1ebe57; transform: translateY(-3px); }
+
+        /* --- WHATSAPP CHANNEL SECTION --- */
+        .channel-section {
+            background: #e6ffea;
+            padding: 3rem 5%;
+            text-align: center;
+            border-bottom: 4px solid #25D366;
+        }
+        .qr-image {
+            width: 150px;
+            margin: 20px auto;
+            border: 5px solid white;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        /* --- SERVICES SECTION --- */
+        .services {
+            padding: 4rem 5%;
+            background-color: var(--light-bg);
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .service-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.05);
+            transition: 0.3s;
+            border-top: 5px solid var(--primary-color);
+            text-align: center;
+        }
+
+        .service-card:hover {
+            transform: translateY(-10px);
+        }
+
+        .service-card img {
+            height: 80px;
+            margin-bottom: 15px;
+        }
+
+        .service-list {
+            text-align: left;
+            list-style: none;
+            margin-top: 15px;
+        }
+
+        .service-list li {
+            padding: 5px 0;
+            border-bottom: 1px solid #eee;
+        }
+        .service-list li i { color: var(--primary-color); margin-right: 10px; }
+
+        /* --- PAYMENT SECTION --- */
+        .payment-section {
+            padding: 3rem 5%;
+            background: white;
+            text-align: center;
+        }
+
+        .bank-card {
+            background: linear-gradient(135deg, #008000, #004d00);
+            color: white;
+            max-width: 500px;
+            margin: 20px auto;
+            padding: 20px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        }
+        .bank-row {
+            display: flex;
+            justify-content: space-between;
+            padding: 10px 0;
+            border-bottom: 1px solid rgba(255,255,255,0.2);
+        }
+        .bank-row:last-child { border-bottom: none; }
+        .bank-label { font-weight: bold; color: var(--accent-color); }
+
+        /* --- CONTACT & FOOTER --- */
+        .contact {
+            background-color: #1a1a1a;
+            color: white;
+            padding: 4rem 5%;
+        }
+        
+        .contact-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 30px;
+            justify-content: space-between;
+        }
+
+        .contact-box h3 {
+            color: var(--accent-color);
+            margin-bottom: 20px;
+            border-bottom: 2px solid var(--accent-color);
+            display: inline-block;
+        }
+
+        .timing-table {
+            width: 100%;
+            text-align: left;
+        }
+        .timing-table td { padding: 5px 10px 5px 0; color: #ccc; }
+
+        footer {
+            background-color: black;
+            color: #888;
+            text-align: center;
+            padding: 20px;
+            font-size: 0.9rem;
+            border-top: 1px solid #333;
+        }
+
+        /* Mobile Adjustments */
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 2.2rem; }
+            .navbar { flex-direction: column; }
+            .nav-links { margin-top: 15px; }
+            .nav-links a { margin: 0 10px; }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="logo-container reveal active">
+            <img src="shop-logo.png" alt="Logo" class="floating-effect"> 
+            ISLAM COMPUTERS
+        </div>
+        <nav class="nav-links">
+            <a href="#services">Services</a>
+            <a href="#payment">Payment</a>
+            <a href="#contact">Contact</a>
+        </nav>
+    </header>
+
+    <section class="hero">
+        <div class="hero-slider">
+            <div class="slide"></div>
+            <div class="slide"></div>
+            <div class="slide"></div>
+        </div>
+
+        <div class="stamp-vendor floating-effect reveal active">
+            <i class="fas fa-stamp"></i> OFFICIAL STAMP VENDOR (100 & 300)
+        </div>
+        
+        <h1 class="floating-effect reveal active">Islam Computers</h1>
+        <p class="reveal active" style="font-size: 1.2rem; margin-bottom: 20px;">Nadra Services • Printing • Online Applications • Stamp Papers</p>
+        
+        <div class="hero-btns reveal active">
+            <a href="https://wa.me/923327477945" class="btn btn-whatsapp click-effect">
+                <i class="fab fa-whatsapp"></i> Chat: 0332-7477945
+            </a>
+            <a href="https://wa.me/923027966287" class="btn btn-whatsapp click-effect">
+                <i class="fab fa-whatsapp"></i> Chat: 0302-7966287
+            </a>
+        </div>
+        
+        <div style="margin-top: 20px;">
+            <a href="https://whatsapp.com/channel/0029VaOBISN8kyyUVXYlbo3R" class="btn click-effect" style="background: white; color: var(--primary-color);">
+                <i class="fas fa-rss"></i> Join WhatsApp Channel
+            </a>
+        </div>
+    </section>
+
+    <section class="channel-section reveal">
+        <h2><i class="fab fa-whatsapp" style="color: #25D366;"></i> Stay Updated</h2>
+        <p>Join the Islam Computer Official Channel for Job Alerts & Updates</p>
+        <img src="channel-qr.png" alt="WhatsApp Channel QR" class="qr-image floating-effect">
+        <br>
+        <a href="https://whatsapp.com/channel/0029VaOBISN8kyyUVXYlbo3R" style="color: #008000; font-weight: bold; text-decoration: underline;">Click here to Join Channel</a>
+    </section>
+
+    <section id="services" class="services">
+        <div class="section-title reveal">
+            <h2>Our Services</h2>
+        </div>
+
+        <div class="services-grid">
+            <div class="service-card reveal">
+                <img src="printing-logo.png" alt="Printing" class="floating-effect">
+                <h3>Printing & Stationery</h3>
+                <ul class="service-list">
+                    <li><i class="fas fa-check"></i> Color & B/W Printing</li>
+                    <li><i class="fab fa-whatsapp"></i> Print via WhatsApp</li>
+                    <li><i class="fas fa-check"></i> Letterpads & CVs</li>
+                    <li><i class="fas fa-check"></i> PVC Plastic Cards</li>
+                    <li><i class="fas fa-check"></i> Pictures & Scanning</li>
+                </ul>
+            </div>
+
+            <div class="service-card reveal">
+                <img src="online-logo.png" alt="Online" class="floating-effect">
+                <h3>Online & Legal</h3>
+                <ul class="service-list">
+                    <li><i class="fas fa-stamp"></i> <strong>Stamp Vendor (100 & 300)</strong></li>
+                    <li><i class="fas fa-car"></i> <strong>Learner & Regular License</strong></li>
+                    <li><i class="fas fa-laptop"></i> Online Job Apply</li>
+                    <li><i class="fas fa-file-contract"></i> Domicile & Polio Card</li>
+                    <li><i class="fas fa-university"></i> Govt. Schemes</li>
+                </ul>
+            </div>
+
+            <div class="service-card reveal">
+                <img src="nadra-logo.png" alt="Nadra" class="floating-effect">
+                <h3>NADRA Services</h3>
+                <ul class="service-list">
+                    <li><i class="fas fa-id-card"></i> New ID Card</li>
+                    <li><i class="fas fa-clock"></i> Expired Card Renewal</li>
+                    <li><i class="fas fa-users"></i> Family Cert (FRC)</li>
+                    <li><i class="fas fa-baby"></i> B-Form / Birth Cert</li>
+                    <li><i class="fas fa-ring"></i> Marriage Certificate</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <section id="payment" class="payment-section reveal">
+        <div class="section-title">
+            <h2>Payment Methods</h2>
+            <p>Please send screenshot after payment</p>
+        </div>
+        
+        <div class="bank-card floating-effect">
+            <h3 style="margin-bottom: 15px; text-decoration: underline;">Account Details</h3>
+            
+            <div class="bank-row">
+                <span class="bank-label">JazzCash:</span>
+                <span>0302-7966287</span>
+            </div>
+            <div class="bank-row">
+                <span class="bank-label">EasyPaisa:</span>
+                <span>0318-7966287</span>
+            </div>
+            <div class="bank-row">
+                <span class="bank-label">HBL Account:</span>
+                <span>01047914696603</span>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact" class="contact reveal">
+        <div class="contact-container">
+            <div class="contact-box">
+                <h3>Contact Info</h3>
+                <p><i class="fas fa-map-marker-alt"></i> Arif Bazar, Burewala</p>
+                <br>
+                <p><i class="fab fa-whatsapp"></i> <a href="https://wa.me/923327477945" style="color:white;">0332-7477945</a> (WhatsApp Only)</p>
+                <p><i class="fab fa-whatsapp"></i> <a href="https://wa.me/923027966287" style="color:white;">0302-7966287</a> (WhatsApp Only)</p>
+                <br>
+                <a href="https://whatsapp.com/channel/0029VaOBISN8kyyUVXYlbo3R" style="color: var(--accent-color);">Visit WhatsApp Channel</a>
+            </div>
+            
+            <div class="contact-box">
+                <h3>Shop Timings</h3>
+                <table class="timing-table">
+                    <tr>
+                        <td>Mon - Sun:</td>
+                        <td style="color: white;">8:30 AM - 8:30 PM</td>
+                    </tr>
+                    <tr>
+                        <td>Friday:</td>
+                        <td style="color: var(--accent-color);">8:30 AM - 4:00 PM</td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <p>Powered by &copy; 2026 MASTER ALI ZAIN & BOSS ALI BAHADUR | Arif Bazar, Burewala. All Rights Reserved.</p>
+    </footer>
+
+    <script>
+        window.addEventListener('scroll', reveal);
+
+        function reveal() {
+            var reveals = document.querySelectorAll('.reveal');
+
+            for(var i = 0; i < reveals.length; i++) {
+                var windowHeight = window.innerHeight;
+                var revealTop = reveals[i].getBoundingClientRect().top;
+                var revealPoint = 150;
+
+                if(revealTop < windowHeight - revealPoint) {
+                    reveals[i].classList.add('active');
+                } else {
+                    reveals[i].classList.remove('active');
+                }
+            }
+        }
+    </script>
+
+</body>
+</html>
